@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <a href="{{ url_for('create_task') }}">Create New Task</a>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task[1] }} - Status: {{ 'Complete' if task[2] == 1 else 'Incomplete' }}
+                <a href="{{ url_for('update_task', task_id=task[0]) }}">Update</a>
+                <a href="{{ url_for('delete_task', task_id=task[0]) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
